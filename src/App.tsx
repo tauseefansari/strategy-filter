@@ -1,12 +1,22 @@
+import { useState } from "react";
 import Dropdown from "./components/dropdown/Dropdown";
+import Tabs from "./components/tabs/Tabs";
 import { dateArray } from "./data";
 
-const dateOptions = dateArray.map((date) => date.replace(/-/g, " "));
+const initialSelectedOption = dateArray[0];
 
 function App() {
+  const [selectedDate, setSelectedDate] = useState(initialSelectedOption);
+
   return (
     <main>
-      <Dropdown options={dateOptions} />
+      <Tabs selectedDate={selectedDate}>
+        <Dropdown
+          options={dateArray}
+          onChange={setSelectedDate}
+          initialSelectedOption={initialSelectedOption}
+        />
+      </Tabs>
     </main>
   );
 }
